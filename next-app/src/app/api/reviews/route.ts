@@ -1,5 +1,6 @@
 import pool from '@/lib/db'
 
+// Get all reviews
 export async function GET() {
   try {
     const result = await pool.query(`
@@ -23,5 +24,28 @@ export async function GET() {
         'Content-Type': 'application/json',
       },
     })
+  }
+}
+
+// Create a review
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { userId, bookTitle, rating, review, mood } = body;
+
+    const result = await pool.query(`
+      INSERT INTO reviews (user_id, book_title, rating, review, mood) 
+      VALUES ($1, $2, $3, $4, $5) 
+      RETURNING *
+      `,
+      [userId, bookTitle, rating, review, mood]
+    );
+
+    return new Response(JSON.stringify(result.rows[0]), {
+      status: 201,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  } catch (error) {
+    return new Response(JSON.stringify({ error: 'DB error' }), { status: 500 })
   }
 }
