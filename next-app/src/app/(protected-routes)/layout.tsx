@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "@/app/globals.css";
-import Navbar from "@/app/components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "../../components/Footer";
 
 const getPoppins = Poppins({
   variable: "--font-poppins",
@@ -11,7 +11,7 @@ const getPoppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Book Review App",
+  title: "Books Review App",
   description: "By <LFC />",
 };
 

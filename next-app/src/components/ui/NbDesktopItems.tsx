@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "../../../lib/utils"
+import { cn } from "../../lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,20 +10,20 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/app/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu"
 
 
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Create review",
-    href: "/productos/fundas",
+    title: "Add review",
+    href: "/add-review",
     description:
       "Create your review about any book you want"
   },
   {
     title: "My reviews",
-    href: "/productos/ropa",
+    href: "/my-reviews",
     description:
       "See the reviews you posted",
   }

@@ -1,22 +1,23 @@
 import React from 'react';
-import ReviewCard from '../components/ReviewCard';
+import Review from '../../components/Review';
+import { getAllReviews } from '@/services/review';
 
-function Reviews() {
-  const reviews = [{
-    id: 1,
-    name: 'review 1'
-  },
-  {
-    id: 2,
-    name: 'review 2'
-  }]
+
+async function Reviews() {
+  const  reviews = await getAllReviews();
   return (
-    <div className="flex flex-col items-center gap-6 mt-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-4  gap-12">
-        {reviews.map((review) => (
-          <ReviewCard key={review.id} />
-        ))}
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mt-6">
+      {reviews && reviews.map((review) => (
+        <Review
+          id={review.id}
+          key={review.id}
+          userName={review.name}
+          bookTitle={review.book_title}
+          rating={review.rating}
+          review={review.review}
+          mood={review.mood}
+        />
+      ))}
     </div>
   );
 }

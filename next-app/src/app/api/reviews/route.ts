@@ -4,7 +4,7 @@ import pool from '@/lib/db'
 export async function GET() {
   try {
     const result = await pool.query(`
-      SELECT r.id, r.book_title, r.rating, r.review, r.mood, r.created_at 
+      SELECT r.id, u.name, r.book_title, r.rating, r.review, r.mood, r.created_at
       FROM reviews r
       JOIN users u ON u.id=r.user_id
       ORDER BY r.created_at DESC;
