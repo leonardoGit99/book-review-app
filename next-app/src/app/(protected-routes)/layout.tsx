@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "../../components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const getPoppins = Poppins({
   variable: "--font-poppins",
@@ -11,7 +12,7 @@ const getPoppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Books Review App",
+  title: "ReadSoul App",
   description: "By <LFC />",
 };
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
+        <Toaster />
         <Footer />
       </body>
     </html>

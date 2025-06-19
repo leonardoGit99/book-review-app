@@ -1,54 +1,19 @@
 "use client"
-
 import * as React from "react"
 import { cn } from "../../lib/utils"
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
 
-
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Add review",
-    href: "/add-review",
-    description:
-      "Create your review about any book you want"
-  },
-  {
-    title: "My reviews",
-    href: "/my-reviews",
-    description:
-      "See the reviews you posted",
-  }
-]
-// Used to create a navigation menu with items
 function NbDesktopItems() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Reviews</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] md:grid-cols-1 lg:w-[400px] ">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <a href="/contacto" className={navigationMenuTriggerStyle()}>

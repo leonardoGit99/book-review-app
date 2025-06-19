@@ -6,7 +6,7 @@ import { Star } from "lucide-react"
 
 export default function Review({ name, book_title, rating, review, mood }: ReviewType) {
   return (
-    <Card className="w-full max-w-xl mx-auto shadow-md">
+    <Card className="w-full max-w-xl mx-auto shadow-blue-200">
       <CardHeader>
         <CardTitle className="text-lg font-semibold">{name}</CardTitle>
         <p className="text-sm text-muted-foreground">{book_title}</p>
@@ -18,7 +18,7 @@ export default function Review({ name, book_title, rating, review, mood }: Revie
             <Star
               key={i}
               size={16}
-              className={i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
+              className={i < Number(rating) ? "text-blue-400 fill-blue-400" : "text-gray-300"}
             />
           ))}
         </div>

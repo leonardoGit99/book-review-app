@@ -2,12 +2,14 @@ export type Review = {
   id: number,
   name: string,
   book_title: string,
-  rating: number,
+  rating: string,
   review: string,
   mood: string
 }
 
-export type NewReview = Omit<Review, 'id'>
+export type NewReview = Omit<Review, 'id'> & {
+  user_id: number
+}
 
 
 export type Reviews = Review[]

@@ -10,7 +10,7 @@ function Navbar() {
         <Link href={'/reviews'} >
           <div className='flex items-center gap-0 sm:gap-2'>
             <h1 className='text-3xl'>
-              Books Review
+              ReadSoul
               <span className='font-bold text-sm'>APP</span>
             </h1>
           </div>
