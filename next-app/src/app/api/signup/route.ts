@@ -3,6 +3,7 @@ import pool from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
 import { id } from 'zod/v4/locales';
+import path from 'path';
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -49,10 +50,8 @@ export async function POST(req: Request) {
       }
     );
 
-    console.log(token);
 
-
-    return NextResponse.json({
+    const response = NextResponse.json({
       message: "User created",
       data: {
         id: result.rows[0].id,
@@ -61,6 +60,18 @@ export async function POST(req: Request) {
     }, {
       status: 201
     })
+
+    // Store jwt token in coockie httpOnly
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 60 * 60 * 24 * 1,
+      path: '/',
+    });
+
+    return response;
+
   } catch (error) {
     console.log(error);
     return NextResponse.json({
