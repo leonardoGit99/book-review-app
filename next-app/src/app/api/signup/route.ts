@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'
+import { id } from 'zod/v4/locales';
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -23,6 +25,7 @@ export async function POST(req: Request) {
       })
     }
 
+    // Hashing the passwd
     const hashedPasswd = await bcrypt.hash(password, 10);
 
     // Add user to db
@@ -33,6 +36,21 @@ export async function POST(req: Request) {
       `,
       [name, email, hashedPasswd]
     )
+
+    const user = result.rows[0];
+
+    // Create jwt
+    const token = jwt.sign({
+      id: user.id
+    },
+      process.env.JWT_SECRET!,
+      {
+        expiresIn: 60000
+      }
+    );
+
+    console.log(token);
+
 
     return NextResponse.json({
       message: "User created",
