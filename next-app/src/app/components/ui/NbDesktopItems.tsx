@@ -1,0 +1,93 @@
+"use client"
+
+import * as React from "react"
+import { cn } from "../../../lib/utils"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/app/components/ui/navigation-menu"
+
+
+
+const components: { title: string; href: string; description: string }[] = [
+  {
+    title: "Create review",
+    href: "/productos/fundas",
+    description:
+      "Create your review about any book you want"
+  },
+  {
+    title: "My reviews",
+    href: "/productos/ropa",
+    description:
+      "See the reviews you posted",
+  }
+]
+// Used to create a navigation menu with items
+function NbDesktopItems() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Reviews</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] md:grid-cols-1 lg:w-[400px] ">
+              {components.map((component) => (
+                <ListItem
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
+                >
+                  {component.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <a href="/contacto" className={navigationMenuTriggerStyle()}>
+              Log out
+            </a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}
+export default NbDesktopItems;
+
+// Used to create a list item for the navigation menu
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
+
+

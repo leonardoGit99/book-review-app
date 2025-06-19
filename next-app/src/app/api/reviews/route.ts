@@ -28,9 +28,9 @@ export async function GET() {
 }
 
 // Create a review
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const body = await request.json();
+    const body = await req.json();
     const { userId, bookTitle, rating, review, mood } = body;
 
     const result = await pool.query(`
