@@ -4,12 +4,12 @@ import { Star } from "lucide-react"
 
 
 
-export default function Review({ userName, bookTitle, rating, review, mood }: ReviewType) {
+export default function Review({ name, book_title, rating, review, mood }: ReviewType) {
   return (
     <Card className="w-full max-w-xl mx-auto shadow-md">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">{userName}</CardTitle>
-        <p className="text-sm text-muted-foreground">{bookTitle}</p>
+        <CardTitle className="text-lg font-semibold">{name}</CardTitle>
+        <p className="text-sm text-muted-foreground">{book_title}</p>
       </CardHeader>
 
       <CardContent className="space-y-2">

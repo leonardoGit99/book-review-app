@@ -1,7 +1,7 @@
 export type Review = {
   id: number,
-  userName: string,
-  bookTitle: string,
+  name: string,
+  book_title: string,
   rating: number,
   review: string,
   mood: string

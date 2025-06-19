@@ -10,7 +10,9 @@ export async function GET() {
       ORDER BY r.created_at DESC;
       `);
 
-    return new Response(JSON.stringify(result.rows), {
+    return new Response(JSON.stringify({
+      data: result.rows
+    }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
