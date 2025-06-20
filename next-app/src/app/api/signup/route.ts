@@ -37,10 +37,11 @@ export async function POST(req: Request) {
     )
 
     const user = result.rows[0];
-
+    console.log(user);
     // Create jwt
     const token = jwt.sign({
-      id: user.id
+      userId: user.id,
+      name: user.name
     },
       process.env.JWT_SECRET!,
       {

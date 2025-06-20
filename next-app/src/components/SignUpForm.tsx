@@ -19,18 +19,19 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { UseFormReturn } from 'react-hook-form';
-import { LoginFormData } from "@/app/(routes)/login/page";
 import { useRouter } from "next/navigation"
+import { SignUpFormData } from "@/app/(routes)/signup/page"
 
 // Types
 type Props = {
-  form: UseFormReturn<LoginFormData>;
-  onSubmit: (body: LoginFormData) => void;
+  form: UseFormReturn<SignUpFormData>;
+  onSubmit: (body: SignUpFormData) => void;
 };
-export function LoginForm({ form, onSubmit }: Props) {
+
+export function SignUpForm({ form, onSubmit }: Props) {
   const router = useRouter();
-  const handleSignUpClick = () => {
-    router.push('/signup');
+  const handleLoginClick = () => {
+    router.push('/login');
   }
   return (
     <Card className="w-full max-w-sm shadow-2xl shadow-blue-300">
@@ -44,23 +45,41 @@ export function LoginForm({ form, onSubmit }: Props) {
             </span>
           </span>
         </h1>
-        <CardTitle className="font-normal">Login to your account</CardTitle>
+        <CardTitle className="font-normal">Register your new account</CardTitle>
         <CardDescription>
-          Enter your credentials below to login to your account
+          Enter the information below to register your account
         </CardDescription>
         <CardAction>
           <Button
             variant="link"
             className="hover:cursor-pointer"
-            onClick={() => handleSignUpClick()}
+            onClick={() => handleLoginClick()}
           >
-            Sign Up
+            Back to login
           </Button>
         </CardAction>
       </CardHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" autoComplete='off'>
           <CardContent className="space-y-8" >
+            {/* name Input */}
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="e.g. Leonardo Fuentes Claros"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* Email Input */}
             <FormField
               control={form.control}
@@ -70,7 +89,7 @@ export function LoginForm({ form, onSubmit }: Props) {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="leonardofuentesclaros@gmail.com"
+                      placeholder="e.g. leonardofuentesclaros@gmail.com"
                       {...field}
                     />
                   </FormControl>
@@ -97,6 +116,25 @@ export function LoginForm({ form, onSubmit }: Props) {
                 </FormItem>
               )}
             />
+
+            {/* Password confirmation Input */}
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="***********"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </CardContent>
           <CardFooter
             className="flex-col gap-2"
@@ -105,7 +143,7 @@ export function LoginForm({ form, onSubmit }: Props) {
               type="submit"
               className="w-full hover:cursor-pointer"
             >
-              Login
+              Sign Up
             </Button>
           </CardFooter>
         </form>
