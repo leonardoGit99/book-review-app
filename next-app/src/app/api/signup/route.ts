@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server';
 import pool from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken'
-import { id } from 'zod/v4/locales';
-import path from 'path';
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -46,7 +44,7 @@ export async function POST(req: Request) {
     },
       process.env.JWT_SECRET!,
       {
-        expiresIn: 60000
+        expiresIn: '1h'
       }
     );
 

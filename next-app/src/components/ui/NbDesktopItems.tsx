@@ -8,15 +8,25 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { logoutUser } from "@/services/user"
+import { useRouter } from "next/navigation"
 
 
 function NbDesktopItems() {
+  const router = useRouter();
+  const handleLogout = () => {
+    logoutUser();
+    router.push('/login');
+  }
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <a href="/contacto" className={navigationMenuTriggerStyle()}>
+            <a
+              className={navigationMenuTriggerStyle()}
+              onClick={handleLogout}
+            >
               Log out
             </a>
           </NavigationMenuLink>

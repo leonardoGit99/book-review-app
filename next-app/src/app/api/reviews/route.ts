@@ -2,6 +2,7 @@ import pool from '@/lib/db'
 
 // Get all reviews
 export async function GET() {
+  
   try {
     const result = await pool.query(`
       SELECT r.id, u.name, r.book_title, r.rating, r.review, r.mood, r.created_at

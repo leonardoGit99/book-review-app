@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet'
 import { z } from 'zod'
@@ -10,6 +10,8 @@ import { Separator } from './ui/separator'
 import ReviewForm from './ReviewForm'
 import { createReview } from '@/services/review'
 import { toast } from "sonner"
+import { getLoggedUser } from '@/services/user'
+import { LoggedUser } from '@/types/user'
 
 
 // Validations Form
@@ -36,6 +38,18 @@ export type ReviewFormData = z.infer<typeof reviewSchema>;
 function CustomSheet({ triggerBtnLabel, sheetTitle }: SheetProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false); // State for sheet
+  const [user, setUser] = useState<LoggedUser | null>(null);
+
+  useEffect(() => {
+    if (open === true) {
+      const fetchUser = async () => {
+        const { data: user } = await getLoggedUser();
+        setUser(user);
+        console.log(user);
+      };
+      fetchUser();
+    }
+  }, [open]);
 
   // Resolve and default form values
   const form = useForm<ReviewFormData>({
@@ -52,7 +66,7 @@ function CustomSheet({ triggerBtnLabel, sheetTitle }: SheetProps) {
   // Function to submit body to backend 
   const onSubmit = async (body: ReviewFormData) => {
     console.log(body);
-    const newBody = { ...body, user_id: 2 }
+    const newBody = { ...body, user_id: user?.userId }
     console.log(newBody);
     createReview(newBody);
     toast("Review has been posted!");
