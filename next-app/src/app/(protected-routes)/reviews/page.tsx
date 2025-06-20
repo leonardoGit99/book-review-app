@@ -1,13 +1,18 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import Review from '../../../components/Review';
 import { getAllReviews } from '@/services/review';
 import { Review as ReviewType } from '@/types/review';
 import CustomSheet from '@/components/CustomSheet';
 
+function Reviews() {
+  const [reviews, setReviews] = useState<ReviewType[]>([]);
 
-async function Reviews() {
-  const { data: reviews } = await getAllReviews();
-  console.log(reviews);
+  useEffect(() => {
+    getAllReviews().then(({ data }) => setReviews(data));
+  }, []);
+
   return (
     <>
       <div className='mt-6'>
@@ -17,7 +22,7 @@ async function Reviews() {
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2  gap-6 mt-12">
-        {reviews && reviews.map((review: ReviewType) => (
+        {reviews.map((review: ReviewType) => (
           <Review
             id={review.id}
             key={review.id}
@@ -35,4 +40,3 @@ async function Reviews() {
 }
 
 export default Reviews;
-
