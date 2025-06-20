@@ -1,7 +1,7 @@
 export const baseLocalUrl: string =
     process.env.NEXT_PUBLIC_API_URL ??
     (typeof window === 'undefined'
-        ? 'http://localhost:3000/api'
+        ? 'https://readsoulapp.vercel.app/api'
         : '/api');
 
 
