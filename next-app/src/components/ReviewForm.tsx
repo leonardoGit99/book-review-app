@@ -17,16 +17,18 @@ import { ReviewFormData } from './CustomSheet';
 // Types
 type Props = {
   form: UseFormReturn<ReviewFormData>;
+  isLoading: boolean,
   onSubmit: (body: ReviewFormData) => void;
 };
 
 
 
-function ReviewForm({ form, onSubmit }: Props) {
+function ReviewForm({ form, isLoading, onSubmit }: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" autoComplete='off'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" autoComplete='off'
+      >
 
         {/* Book title Input */}
         <FormField
@@ -39,6 +41,7 @@ function ReviewForm({ form, onSubmit }: Props) {
                 <Input
                   placeholder="Eg. Programming with Typescript..."
                   {...field}
+                  disabled={isLoading}
                 />
               </FormControl>
               <FormMessage />
@@ -57,6 +60,7 @@ function ReviewForm({ form, onSubmit }: Props) {
                 <Input
                   placeholder="3"
                   {...field}
+                  disabled={isLoading}
                 />
               </FormControl>
               <FormMessage />
@@ -77,6 +81,7 @@ function ReviewForm({ form, onSubmit }: Props) {
                   className="resize-none"
                   placeholder="Eg. I love this book, because...."
                   {...field}
+                  disabled={isLoading}
                 />
               </FormControl>
               <FormMessage />
@@ -95,6 +100,7 @@ function ReviewForm({ form, onSubmit }: Props) {
                 <Input
                   placeholder="happy"
                   {...field}
+                  disabled={isLoading}
                 />
               </FormControl>
               <FormMessage />
@@ -104,9 +110,15 @@ function ReviewForm({ form, onSubmit }: Props) {
 
         <Button
           type="submit"
-          className="w-full"
+          className={`w-full hover:cursor-pointer ${isLoading ? "cursor-progress" : ""}`}
+          disabled={isLoading}
         >
-          Post
+          {
+            isLoading ?
+              <>Posting...</>
+              :
+              <>Post</>
+          }
         </Button>
       </form>
     </Form>

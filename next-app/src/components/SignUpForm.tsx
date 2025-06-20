@@ -25,10 +25,11 @@ import { SignUpFormData } from "@/app/(routes)/signup/page"
 // Types
 type Props = {
   form: UseFormReturn<SignUpFormData>;
+  isLoading: boolean,
   onSubmit: (body: SignUpFormData) => void;
 };
 
-export function SignUpForm({ form, onSubmit }: Props) {
+export function SignUpForm({ form, isLoading, onSubmit }: Props) {
   const router = useRouter();
   const handleLoginClick = () => {
     router.push('/login');
@@ -54,6 +55,7 @@ export function SignUpForm({ form, onSubmit }: Props) {
             variant="link"
             className="hover:cursor-pointer"
             onClick={() => handleLoginClick()}
+            disabled={isLoading}
           >
             Back to login
           </Button>
@@ -73,6 +75,7 @@ export function SignUpForm({ form, onSubmit }: Props) {
                     <Input
                       placeholder="e.g. Leonardo Fuentes Claros"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -91,6 +94,7 @@ export function SignUpForm({ form, onSubmit }: Props) {
                     <Input
                       placeholder="e.g. leonardofuentesclaros@gmail.com"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -110,6 +114,7 @@ export function SignUpForm({ form, onSubmit }: Props) {
                       placeholder="***********"
                       type="password"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -129,6 +134,7 @@ export function SignUpForm({ form, onSubmit }: Props) {
                       placeholder="***********"
                       type="password"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -142,8 +148,14 @@ export function SignUpForm({ form, onSubmit }: Props) {
             <Button
               type="submit"
               className="w-full hover:cursor-pointer"
+              disabled={isLoading}
             >
-              Sign Up
+              {
+                isLoading ?
+                  <>Please wait...</>
+                  :
+                  <>Sign up</>
+              }
             </Button>
           </CardFooter>
         </form>

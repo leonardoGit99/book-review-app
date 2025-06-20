@@ -39,7 +39,7 @@ function CustomSheet({ triggerBtnLabel, sheetTitle }: SheetProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false); // State for sheet
   const [user, setUser] = useState<LoggedUser | null>(null);
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   useEffect(() => {
     if (open === true) {
       const fetchUser = async () => {
@@ -65,10 +65,12 @@ function CustomSheet({ triggerBtnLabel, sheetTitle }: SheetProps) {
 
   // Function to submit body to backend 
   const onSubmit = async (body: ReviewFormData) => {
+    setIsLoading(true);
     console.log(body);
     const newBody = { ...body, user_id: user?.userId }
     console.log(newBody);
-    createReview(newBody);
+    await createReview(newBody);
+    setIsLoading(false);
     toast("Review has been posted!");
     setOpen(false);
     form.reset();
@@ -86,6 +88,7 @@ function CustomSheet({ triggerBtnLabel, sheetTitle }: SheetProps) {
         </SheetHeader>
         <Separator className='mt-2 mb-4' />
         <ReviewForm
+          isLoading={isLoading}
           form={form}
           onSubmit={onSubmit}
         />

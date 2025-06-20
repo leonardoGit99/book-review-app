@@ -24,10 +24,11 @@ import { useRouter } from "next/navigation"
 
 // Types
 type Props = {
-  form: UseFormReturn<LoginFormData>;
-  onSubmit: (body: LoginFormData) => void;
+  form: UseFormReturn<LoginFormData>,
+  isLoading: boolean,
+  onSubmit: (body: LoginFormData) => void,
 };
-export function LoginForm({ form, onSubmit }: Props) {
+export function LoginForm({ form, isLoading, onSubmit }: Props) {
   const router = useRouter();
   const handleSignUpClick = () => {
     router.push('/signup');
@@ -53,6 +54,7 @@ export function LoginForm({ form, onSubmit }: Props) {
             variant="link"
             className="hover:cursor-pointer"
             onClick={() => handleSignUpClick()}
+            disabled={isLoading}
           >
             Sign Up
           </Button>
@@ -72,6 +74,7 @@ export function LoginForm({ form, onSubmit }: Props) {
                     <Input
                       placeholder="leonardofuentesclaros@gmail.com"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -91,6 +94,7 @@ export function LoginForm({ form, onSubmit }: Props) {
                       placeholder="***********"
                       type="password"
                       {...field}
+                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -104,8 +108,14 @@ export function LoginForm({ form, onSubmit }: Props) {
             <Button
               type="submit"
               className="w-full hover:cursor-pointer"
+              disabled={isLoading}
             >
-              Login
+              {
+                isLoading ?
+                  <>Please wait...</>
+                  :
+                  <>Login</>
+              }
             </Button>
           </CardFooter>
         </form>
