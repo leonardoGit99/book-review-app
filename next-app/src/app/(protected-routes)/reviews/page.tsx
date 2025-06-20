@@ -1,5 +1,5 @@
 import React from 'react';
-import Review from '../../components/Review';
+import Review from '../../../components/Review';
 import { getAllReviews } from '@/services/review';
 import { Review as ReviewType } from '@/types/review';
 import CustomSheet from '@/components/CustomSheet';

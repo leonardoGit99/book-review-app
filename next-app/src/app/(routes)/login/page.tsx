@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoginForm } from '@/components/LoginForm'
 import { useRouter } from 'next/navigation'
+import { authUser } from '@/services/user'
 
 // Validations Form
 const loginSchema = z.object({
@@ -29,12 +30,11 @@ function Login() {
   // Function to submit body to backend 
   const onSubmit = async (body: LoginFormData) => {
     console.log(body);
-    // const user = await authUser(body);
-    // if (user) {
-    //   console.log('redirecting...');
-    // }
-    form.reset();
-    router.push('/reviews');
+    const { message } = await authUser(body);
+    if (message === 'Login successfuly') {
+      form.reset();
+      router.push('/reviews');
+    }
   };
   return (
     <div className='h-full flex justify-center items-center '>
