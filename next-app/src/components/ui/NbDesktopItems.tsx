@@ -11,13 +11,16 @@ import {
 import { logoutUser } from "@/services/user"
 import { useRouter } from "next/navigation"
 
+type NbProps = {
+  onLogout: () => void;
+}
 
-function NbDesktopItems() {
-  const router = useRouter();
-  const handleLogout = () => {
-    logoutUser();
-    router.push('/');
-  }
+function NbDesktopItems({ onLogout }: NbProps) {
+    const router = useRouter();
+    const handleLogout = () => {
+      logoutUser();
+      router.push('/login');
+    }
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -25,7 +28,7 @@ function NbDesktopItems() {
           <NavigationMenuLink asChild>
             <a
               className={navigationMenuTriggerStyle()}
-              onClick={handleLogout}
+              onClick={onLogout}
             >
               Log out
             </a>

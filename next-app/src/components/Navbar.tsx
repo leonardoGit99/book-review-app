@@ -1,9 +1,18 @@
+"use client"
 import Link from 'next/link'
 import React from 'react'
 import NbDesktopItems from './ui/NbDesktopItems'
 import NbMobileItems from './ui/NbMobileItems'
+import { logoutUser } from '@/services/user';
+import { useRouter } from 'next/navigation';
 
 function Navbar() {
+  const router = useRouter();
+  const handleLogout = async () => {
+    logoutUser().then(() => {
+      router.push('/login');
+    });
+  }
   return (
     <div className='fixed top-0 left-0 right-0 z-50 h-[5.75rem] py-5 bg-background shadow-sm'>
       <div className='flex items-center justify-between  mx-auto cursor-pointer sm:max-w-6xl'>
@@ -16,10 +25,14 @@ function Navbar() {
           </div>
         </Link>
         <div className='items-center justify-between hidden sm:flex'>
-          <NbDesktopItems />
+          <NbDesktopItems
+            onLogout={handleLogout}
+          />
         </div>
         <div className='flex sm:hidden'>
-          <NbMobileItems />
+          <NbMobileItems
+            onLogout={handleLogout}
+          />
         </div>
       </div>
     </div>
