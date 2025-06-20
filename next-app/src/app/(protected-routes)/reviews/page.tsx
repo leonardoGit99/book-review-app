@@ -7,6 +7,7 @@ import CustomSheet from '@/components/CustomSheet';
 
 async function Reviews() {
   const { data: reviews } = await getAllReviews();
+  console.log(reviews);
   return (
     <>
       <div className='mt-6'>
@@ -25,6 +26,7 @@ async function Reviews() {
             rating={review.rating}
             review={review.review}
             mood={review.mood}
+            created_at={review.created_at}
           />
         ))}
       </div>

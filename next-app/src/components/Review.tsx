@@ -4,7 +4,9 @@ import { Star } from "lucide-react"
 
 
 
-export default function Review({ name, book_title, rating, review, mood }: ReviewType) {
+export default function Review({ name, book_title, rating, review, mood, created_at }: ReviewType) {
+
+  const formattedDate = new Intl.DateTimeFormat("en-CA").format(new Date(created_at));
   return (
     <Card className="w-full max-w-xl mx-auto shadow-blue-200">
       <CardHeader>
@@ -25,7 +27,10 @@ export default function Review({ name, book_title, rating, review, mood }: Revie
 
         <p className="text-sm text-gray-800">{review}</p>
 
-        <div className="text-xs text-muted-foreground">Mood: {mood}</div>
+        <div className="text-xs font-light">Mood: {mood}</div>
+        <div className="text-xs text-muted-foreground w-full text-end">
+          {formattedDate}
+        </div>
       </CardContent>
     </Card>
   )

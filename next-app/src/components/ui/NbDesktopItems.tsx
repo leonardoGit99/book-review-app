@@ -8,19 +8,12 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { logoutUser } from "@/services/user"
-import { useRouter } from "next/navigation"
 
 type NbProps = {
   onLogout: () => void;
 }
 
 function NbDesktopItems({ onLogout }: NbProps) {
-    const router = useRouter();
-    const handleLogout = () => {
-      logoutUser();
-      router.push('/login');
-    }
   return (
     <NavigationMenu>
       <NavigationMenuList>

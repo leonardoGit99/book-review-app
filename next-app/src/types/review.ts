@@ -5,6 +5,7 @@ export type Review = {
   rating: string,
   review: string,
   mood: string
+  created_at: string
 }
 
 export type NewReview = Omit<Review, 'id'> & {
