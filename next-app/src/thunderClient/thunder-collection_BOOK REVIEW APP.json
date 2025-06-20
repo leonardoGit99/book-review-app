@@ -1,0 +1,86 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "BOOK REVIEW APP",
+    "collectionId": "f494386a-224e-46e8-a151-01260247fa91",
+    "dateExported": "2025-06-20T00:29:57.692Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "4f20845a-6f10-41c7-b092-254868ef95fa",
+            "colId": "f494386a-224e-46e8-a151-01260247fa91",
+            "containerId": "",
+            "name": "POST REVIEW",
+            "url": "http://localhost:3000/api/reviews",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2025-06-19T01:09:25.432Z",
+            "modified": "2025-06-19T01:13:03.530Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userId\": \"1\",\n  \"bookTitle\": \"Programming with java\",\n  \"rating\": 3,\n  \"review\": \"Good book\",\n  \"mood\": \"programming\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2b37dad6-368a-4bc1-97a2-5ff1ac07e396",
+            "colId": "f494386a-224e-46e8-a151-01260247fa91",
+            "containerId": "",
+            "name": "GET ALL REVIEWS",
+            "url": "http://localhost:3000/api/reviews",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-06-19T01:10:11.630Z",
+            "modified": "2025-06-19T01:14:35.303Z",
+            "headers": []
+        },
+        {
+            "_id": "44a8fe5b-b8a9-4317-8cd7-7975af216c0e",
+            "colId": "f494386a-224e-46e8-a151-01260247fa91",
+            "containerId": "",
+            "name": "DELETE REVIEW",
+            "url": "http://localhost:3000/api/reviews/1",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2025-06-19T01:27:07.660Z",
+            "modified": "2025-06-19T01:37:20.372Z",
+            "headers": []
+        },
+        {
+            "_id": "d8a8dffb-87f8-45a8-a285-8493287f6626",
+            "colId": "f494386a-224e-46e8-a151-01260247fa91",
+            "containerId": "",
+            "name": "POST USER",
+            "url": "http://localhost:3000/api/signup",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2025-06-19T22:49:58.547Z",
+            "modified": "2025-06-20T00:19:09.995Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Leonardooo\",\n  \"email\": \"leito@gmail.com\",\n  \"password\": \"123456789\"\n}\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "4046c570-5b4a-4c14-b104-3c1ff93113f4",
+            "colId": "f494386a-224e-46e8-a151-01260247fa91",
+            "containerId": "",
+            "name": "LOGIN",
+            "url": "http://localhost:3000/api/login",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2025-06-20T00:17:12.820Z",
+            "modified": "2025-06-20T00:19:25.742Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"leito@gmail.com\",\n  \"password\":\"123456789\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "ldh52SBhYEgxXazk-hBU80nDzrs_dSqgDFo4W-fFrLFYVbhTOAx6znSxsWglzgExFyM_VpedE1ZMVA0ziY3COw"
+}
