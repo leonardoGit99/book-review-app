@@ -2,9 +2,11 @@
 
 Aplicación web responsive full stack para registrar y consultar reseñas de libros. Desarrollada con Next.js 15 y PostgreSQL.
 
-## 1. Enlace del deployment
+## 1. Enlace del deployment y usuario de prueba ya creado
 
 - https://readsoulapp.vercel.app
+- email: leonardofuentesclaros@gmail.com
+- contraseña: 123456789
 
 ## 2. Instrucciones para ejecutar localmente
 
