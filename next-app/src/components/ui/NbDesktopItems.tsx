@@ -16,7 +16,7 @@ function NbDesktopItems() {
   const router = useRouter();
   const handleLogout = () => {
     logoutUser();
-    router.push('/login');
+    router.push('/');
   }
   return (
     <NavigationMenu>
